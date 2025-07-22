@@ -1,0 +1,107 @@
+/* ===== GLOBAL RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== APP BASE STYLES ===== */
+.app {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #000000;
+  min-height: 100vh;
+}
+
+/* ===== FIXED SCROLLSMOOTHER SETUP ===== */
+#smooth-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1; /* Below navbar */
+}
+
+#smooth-content {
+  will-change: transform;
+  /* FIXED: Prevent any overflow issues */
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR FIXES ===== */
+/* .navbar {
+  position: fixed !important; 
+  top: 60px !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important; 
+} */
+
+/* ===== LOADING SCREEN PROTECTION ===== */
+.loading-screen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+  
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.loading-screen > :first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.loading-screen .loading-prompts {
+  position: absolute !important;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+#smooth-content * {
+  will-change: auto;
+}
+
+/* ADDED: Prevent any scroll conflicts */
+body {
+  overflow: hidden; /* Let ScrollSmoother handle all scrolling */
+}
+
+html {
+  overflow: hidden; /* Prevent any native scroll */
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-primary, .cta-secondary {
+    width: 200px;
+  }
+}
+
+/* ===== FUTURE ENHANCEMENTS ===== */
+/* Parallax effects - use with data-speed attributes in JSX */
+/* Example: <div data-speed="0.5">Slow parallax element</div> */
+/* Example: <div data-speed="1.5">Fast parallax element</div> */

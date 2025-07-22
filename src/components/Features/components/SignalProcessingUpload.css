@@ -1,0 +1,462 @@
+/* SignalProcessingUpload.css */
+
+.signal-processing-upload {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Upload Area Styles */
+.upload-area {
+  background: rgba(0, 255, 65, 0.1);
+  border: 2px dashed rgba(0, 255, 65, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 80px;
+}
+
+.upload-area:hover {
+  border-color: rgba(0, 255, 65, 0.6);
+  background: rgba(0, 255, 65, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 255, 65, 0.2);
+}
+
+.upload-icon {
+  color: #00ff41;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.upload-area:hover .upload-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.upload-text {
+  color: #00ff41;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.upload-subtitle {
+  color: #888;
+  font-size: 0.7rem;
+  font-style: italic;
+  max-width: 250px;
+  line-height: 1.3;
+}
+
+/* Signal Visualization Styles */
+.signal-visualization {
+  background: rgba(20, 20, 20, 0.8);
+  border-radius: 12px;
+  padding: 15px;
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  margin: 10px 0;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.signal-step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-title {
+  color: #00ff41;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.signals-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.signals-container.centered {
+  align-items: center;
+}
+
+.signal-item {
+  background: rgba(40, 40, 40, 0.6);
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.signal-item.processing {
+  border-color: rgba(0, 255, 65, 0.4);
+  background: rgba(0, 255, 65, 0.05);
+  animation: pulseProcessing 2s ease-in-out infinite;
+}
+
+@keyframes pulseProcessing {
+  0%, 100% { 
+    border-color: rgba(0, 255, 65, 0.4);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
+  }
+  50% { 
+    border-color: rgba(0, 255, 65, 0.6);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  }
+}
+
+.signal-item.merged {
+  border-color: rgba(0, 255, 65, 0.6);
+  background: rgba(0, 255, 65, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  animation: successGlow 2s ease-in-out infinite;
+}
+
+@keyframes successGlow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+  }
+}
+
+.signal-label {
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.signal-svg {
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  margin-bottom: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.signal-path {
+  filter: drop-shadow(0 0 3px currentColor);
+}
+
+.signal-path.morphing {
+  animation: signalMorph 2s ease-in-out infinite;
+}
+
+.signal-path.glow {
+  filter: drop-shadow(0 0 6px #00ff41);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes signalMorph {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scaleY(1);
+    filter: drop-shadow(0 0 3px currentColor);
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scaleY(1.1);
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 6px #00ff41);
+  }
+  50% { 
+    filter: drop-shadow(0 0 12px #00ff41);
+  }
+}
+
+.signal-specs {
+  color: #888;
+  font-size: 0.7rem;
+  text-align: center;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.signal-specs.success {
+  color: #00ff41;
+  font-weight: 500;
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0%, 100% { 
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  }
+  50% { 
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+  }
+}
+
+/* Processing Indicator */
+.processing-indicator {
+  background: rgba(50, 50, 50, 0.5);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.process-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.process-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #00ff41, #00ccff, #00ff41);
+  animation: processAnimation 2s ease-out infinite;
+}
+
+@keyframes processAnimation {
+  0% { 
+    transform: translateX(-100%);
+  }
+  100% { 
+    transform: translateX(100%);
+  }
+}
+
+.process-text {
+  color: #00ccff;
+  font-size: 0.75rem;
+  text-align: center;
+  font-weight: 500;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* File List Styles */
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: rgba(50, 50, 50, 0.5);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.file-item:hover {
+  background: rgba(60, 60, 60, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.file-item.processing {
+  border-color: rgba(0, 255, 65, 0.3);
+  background: rgba(0, 255, 65, 0.05);
+}
+
+.file-item.completed {
+  border-color: rgba(0, 255, 65, 0.4);
+  background: rgba(0, 255, 65, 0.08);
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.file-name {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.file-size {
+  color: #888;
+  font-size: 0.75rem;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.progress-bar {
+  width: 50px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar .progress-fill {
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, #00ff41, #00ccff);
+  animation: progressSlide 2s ease-out infinite;
+}
+
+@keyframes progressSlide {
+  0% { 
+    transform: translateX(-100%);
+  }
+  100% { 
+    transform: translateX(100%);
+  }
+}
+
+.sync-icon {
+  color: #00ff41;
+  font-weight: bold;
+  font-size: 1rem;
+  animation: checkmarkAppear 0.5s ease-out;
+}
+
+@keyframes checkmarkAppear {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.5) rotate(-90deg);
+  }
+  50% { 
+    transform: scale(1.2) rotate(0deg);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .signal-processing-upload {
+    gap: 12px;
+  }
+  
+  .upload-area {
+    padding: 15px;
+    min-height: 70px;
+  }
+  
+  .upload-text {
+    font-size: 0.8rem;
+  }
+  
+  .upload-subtitle {
+    font-size: 0.65rem;
+  }
+  
+  .signal-visualization {
+    padding: 12px;
+  }
+  
+  .step-title {
+    font-size: 0.8rem;
+  }
+  
+  .signal-item {
+    padding: 8px;
+  }
+  
+  .signal-svg {
+    height: 35px;
+  }
+  
+  .signals-container {
+    gap: 8px;
+  }
+  
+  .file-item {
+    padding: 8px;
+  }
+  
+  .file-name {
+    font-size: 0.8rem;
+  }
+  
+  .file-size {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-area {
+    padding: 12px;
+    min-height: 60px;
+  }
+  
+  .signal-visualization {
+    padding: 10px;
+  }
+  
+  .signal-svg {
+    height: 30px;
+  }
+  
+  .step-title {
+    font-size: 0.75rem;
+  }
+  
+  .signal-label {
+    font-size: 0.75rem;
+  }
+  
+  .signal-specs {
+    font-size: 0.65rem;
+  }
+  
+  .process-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* Dark theme compatibility */
+@media (prefers-color-scheme: dark) {
+  .signal-processing-upload {
+    color: #ffffff;
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .signal-processing-upload *,
+  .signal-processing-upload *::before,
+  .signal-processing-upload *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

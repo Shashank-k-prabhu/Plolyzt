@@ -1,0 +1,702 @@
+/* AboutPlotlyzt.module.css - Fixed with comprehensive mobile responsiveness */
+
+/* Main Section */
+.plotlyztAboutSection {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Grid */
+.plotlyztBackgroundGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+}
+
+.plotlyztGridPattern {
+  height: 100%;
+  width: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Container */
+.plotlyztAboutContainer {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+/* Main Grid Layout */
+.plotlyztAboutGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: center;
+  min-height: 80vh;
+}
+
+@media (min-width: 1024px) {
+  .plotlyztAboutGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Content Section */
+.plotlyztContentSection {
+  transition: all 1s ease;
+}
+
+.plotlyztContentSection.plotlyztVisible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.plotlyztContentSection.plotlyztHidden {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+/* Header */
+.plotlyztHeaderSection {
+  margin-bottom: 32px;
+}
+
+.plotlyztHeaderBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #00ff41;
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.plotlyztHeaderIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.plotlyztMainTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  font-family: 'Lora', serif;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .plotlyztMainTitle {
+    font-size: 3.5rem;
+  }
+}
+
+.plotlyztGradientTextGreen {
+  background: linear-gradient(45deg, #00ff41, #00ccff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.plotlyztGradientTextBlue {
+  background: linear-gradient(45deg, #00ccff, #00ff41);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Story Section */
+.plotlyztStorySection {
+  margin: 32px 0;
+}
+
+.plotlyztStoryParagraph {
+  color: #d1d5db;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.plotlyztStoryParagraph.plotlyztLarge {
+  font-size: 1.125rem;
+}
+
+.plotlyztStoryHighlight {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Features Grid */
+.plotlyztFeaturesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .plotlyztFeaturesGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.plotlyztFeatureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.plotlyztFeatureIcon {
+  width: 20px;
+  height: 20px;
+  color: #00ff41;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.plotlyztFeatureTitle {
+  font-weight: 600;
+  color: #fff;
+  font-family: 'Lexend', sans-serif;
+  margin: 0 0 4px 0;
+  font-size: 16px;
+}
+
+.plotlyztFeatureDescription {
+  font-size: 14px;
+  font-family: 'Lora', serif;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Visualization Section */
+.plotlyztVisualizationSection {
+  position: relative;
+  transition: all 1s ease;
+  transition-delay: 0.3s;
+}
+
+.plotlyztVisualizationSection.plotlyztVisible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.plotlyztVisualizationSection.plotlyztHidden {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+/* Main Display Card */
+.plotlyztWaveformDisplay {
+  background: rgba(17, 24, 39, 0.5);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid rgba(55, 65, 81, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+/* Display Header */
+.plotlyztDisplayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.plotlyztDisplayTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 4px 0;
+}
+
+.plotlyztDisplaySubtitle {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.plotlyztLiveIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plotlyztLiveDot {
+  width: 8px;
+  height: 8px;
+  background: #00ff41;
+  border-radius: 50%;
+  animation: plotlyztPulse 2s infinite;
+}
+
+@keyframes plotlyztPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.plotlyztLiveText {
+  font-size: 12px;
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+}
+
+/* Waveform Container */
+.plotlyztWaveformContainer {
+  background: #000;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.plotlyztWaveformSvg {
+  width: 100%;
+  height: 120px;
+}
+
+.plotlyztWaveformPath {
+  transition: all 1s ease;
+}
+
+/* Pattern Label */
+.plotlyztPatternInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.plotlyztPatternLabel {
+  color: #9ca3af;
+}
+
+.plotlyztPatternValue {
+  font-weight: 600;
+  transition: color 0.5s ease;
+}
+
+/* Metrics Grid */
+.plotlyztMetricsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(55, 65, 81, 0.5);
+}
+
+.plotlyztMetricItem {
+  text-align: center;
+}
+
+.plotlyztMetricValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.plotlyztMetricValue.plotlyztPrimary {
+  color: #00ff41;
+}
+
+.plotlyztMetricValue.plotlyztSecondary {
+  color: #00ccff;
+}
+
+.plotlyztMetricLabel {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Floating Research Note */
+.plotlyztResearchNote {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+  max-width: 192px;
+}
+
+.plotlyztResearchNoteBadge {
+  font-size: 12px;
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 4px;
+}
+
+.plotlyztResearchNoteText {
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Stats Cards */
+.plotlyztStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.plotlyztStatCard {
+  background: rgba(31, 41, 55, 0.5);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.plotlyztStatValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.plotlyztStatValue.plotlyztPrimary {
+  color: #00ff41;
+}
+
+.plotlyztStatValue.plotlyztSecondary {
+  color: #00ccff;
+}
+
+.plotlyztStatLabel {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* ENHANCED: Responsive Design with proper mobile support */
+@media (max-width: 1024px) {
+  .plotlyztAboutContainer {
+    padding: 70px 20px;
+  }
+
+  .plotlyztAboutGrid {
+    gap: 48px;
+  }
+
+  .plotlyztMainTitle {
+    font-size: 2.8rem;
+  }
+
+  .plotlyztWaveformDisplay {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .plotlyztAboutContainer {
+    padding: 60px 16px;
+  }
+
+  .plotlyztAboutGrid {
+    gap: 40px;
+  }
+
+  .plotlyztMainTitle {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .plotlyztFeaturesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .plotlyztWaveformDisplay {
+    padding: 24px;
+  }
+
+  .plotlyztResearchNote {
+    position: static;
+    max-width: 100%;
+    margin-bottom: 24px;
+  }
+
+  /* MOBILE: Adjust metrics grid for better mobile display */
+  .plotlyztMetricsGrid {
+    gap: 12px;
+  }
+
+  .plotlyztMetricValue {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .plotlyztAboutContainer {
+    padding: 50px 12px;
+  }
+
+  .plotlyztAboutGrid {
+    gap: 32px;
+    min-height: auto; /* Remove fixed height constraint */
+  }
+
+  .plotlyztMainTitle {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .plotlyztStoryParagraph.plotlyztLarge {
+    font-size: 1rem; /* Reduce large paragraph size */
+  }
+
+  .plotlyztStoryParagraph {
+    margin-bottom: 18px; /* Tighter spacing */
+  }
+
+  .plotlyztWaveformDisplay {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .plotlyztWaveformContainer {
+    padding: 16px;
+  }
+
+  .plotlyztWaveformSvg {
+    height: 100px; /* Smaller waveform for mobile */
+  }
+
+  .plotlyztMetricsGrid {
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+
+  .plotlyztMetricValue {
+    font-size: 1rem;
+  }
+
+  .plotlyztMetricLabel {
+    font-size: 11px;
+  }
+
+  .plotlyztStatsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .plotlyztStatCard {
+    padding: 12px;
+  }
+
+  .plotlyztStatValue {
+    font-size: 1.2rem;
+  }
+}
+
+/* NEW: Enhanced mobile support for small screens (425px and below) */
+@media (max-width: 425px) {
+  /* CONCEPT: Optimize for modern smartphones with comfortable spacing */
+  
+  .plotlyztAboutContainer {
+    padding: 40px 15px;
+  }
+
+  .plotlyztAboutGrid {
+    gap: 28px;
+  }
+
+  /* HEADER: Optimize title for small screens */
+  .plotlyztHeaderBadge {
+    font-size: 12px;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .plotlyztHeaderIcon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .plotlyztMainTitle {
+    font-size: 1.8rem;
+    gap: 8px;
+  }
+
+  /* CONTENT: Better text flow for narrow screens */
+  .plotlyztStorySection {
+    margin: 24px 0;
+  }
+
+  .plotlyztStoryParagraph.plotlyztLarge {
+    font-size: 0.95rem;
+  }
+
+  .plotlyztStoryParagraph {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  /* FEATURES: Single column with optimized spacing */
+  .plotlyztFeaturesGrid {
+    gap: 16px;
+    padding-top: 16px;
+  }
+
+  .plotlyztFeatureIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .plotlyztFeatureTitle {
+    font-size: 15px;
+  }
+
+  .plotlyztFeatureDescription {
+    font-size: 13px;
+  }
+
+  /* VISUALIZATION: Compact display for mobile */
+  .plotlyztWaveformDisplay {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .plotlyztDisplayHeader {
+    margin-bottom: 16px;
+  }
+
+  .plotlyztDisplayTitle {
+    font-size: 1rem;
+  }
+
+  .plotlyztDisplaySubtitle {
+    font-size: 13px;
+  }
+
+  .plotlyztLiveText {
+    font-size: 11px;
+  }
+
+  .plotlyztWaveformContainer {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .plotlyztWaveformSvg {
+    height: 80px; /* Compact waveform */
+  }
+
+  .plotlyztPatternInfo {
+    font-size: 13px;
+  }
+
+  /* METRICS: Optimized for small screens */
+  .plotlyztMetricsGrid {
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .plotlyztMetricValue {
+    font-size: 0.95rem;
+  }
+
+  .plotlyztMetricLabel {
+    font-size: 10px;
+  }
+
+  /* RESEARCH NOTE: Better mobile positioning */
+  .plotlyztResearchNote {
+    position: static;
+    margin: 16px 0 20px 0;
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .plotlyztResearchNoteBadge {
+    font-size: 11px;
+  }
+
+  .plotlyztResearchNoteText {
+    font-size: 13px;
+  }
+
+  /* STATS: Single column for better readability */
+  .plotlyztStatsGrid {
+    margin-top: 16px;
+  }
+
+  .plotlyztStatCard {
+    padding: 12px;
+    text-align: center;
+  }
+
+  .plotlyztStatValue {
+    font-size: 1.1rem;
+  }
+
+  .plotlyztStatLabel {
+    font-size: 13px;
+  }
+}
+
+/* FALLBACK: Ultra-small screens (320px and below) */
+@media (max-width: 320px) {
+  .plotlyztAboutContainer {
+    padding: 30px 10px;
+  }
+
+  .plotlyztMainTitle {
+    font-size: 1.6rem;
+  }
+
+  .plotlyztStoryParagraph.plotlyztLarge {
+    font-size: 0.9rem;
+  }
+
+  .plotlyztStoryParagraph {
+    font-size: 0.85rem;
+  }
+
+  .plotlyztWaveformDisplay {
+    padding: 12px;
+  }
+
+  .plotlyztWaveformSvg {
+    height: 70px;
+  }
+
+  .plotlyztMetricValue {
+    font-size: 0.9rem;
+  }
+
+  .plotlyztStatValue {
+    font-size: 1rem;
+  }
+
+  /* PERFORMANCE: Disable animations on very small screens */
+  .plotlyztContentSection,
+  .plotlyztVisualizationSection {
+    transition: none;
+  }
+
+  .plotlyztWaveformPath {
+    transition: none;
+  }
+}

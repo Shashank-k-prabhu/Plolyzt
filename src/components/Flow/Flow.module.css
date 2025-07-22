@@ -1,0 +1,566 @@
+/* Flow.module.css - Fixed with 320px responsive support */
+
+/* FIXED: Container height accounts for navbar and spacing */
+.flowContainer {
+  position: relative;
+  width: 100%;
+  /* EXPLAINED: Total height = viewport + extra scroll space for horizontal animation */
+  height: calc(100vh ); /* 100vh visible + 250vh for scroll trigger */
+  background: #000;
+  overflow: hidden;
+}
+
+/* FIXED: Header positioned below navbar with proper spacing */
+.flowHeader {
+  position: absolute;
+  /* EXPLAINED: 90px (navbar + margin) + 2vh spacing as requested */
+  top: calc(90px + 2vh);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  width: 100%;
+  padding: 0 20px;
+  /* ADDED: Extra bottom margin for spacing before cards */
+  margin-bottom: 10vh;
+}
+
+.flowTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+   font-family: 'Tinos', serif;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.flowSubtitle {
+  font-size: 1.2rem;
+  font-family: 'Lora', serif;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  /* ADDED: Additional bottom spacing for 10vh gap */
+  /* padding-bottom: 10vh; */
+}
+
+/* FIXED: Sticky container positioned to account for header */
+.stickyContainer {
+  /* EXPLAINED: Start below header content */
+  margin-top: calc(90px + 1vh + 150px); /* navbar + spacing + header height */
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Horizontal scrolling track */
+.horizontalTrack {
+  display: flex;
+  height: 100vh;
+  will-change: transform;
+}
+
+/* FIXED: Scaled down cards - 85% of viewport */
+.flowCard {
+  width: 100vw;
+  height: 70vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 60px; /* INCREASED: More padding for smaller cards */
+}
+
+/* FIXED: Smaller card dimensions */
+.cardInner {
+  width: 85%; /* CHANGED: From 100% to 85% */
+  max-width: 1200px; /* REDUCED: From 1400px to 1200px */
+  height: 500px; /* REDUCED: From 600px to 500px */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 255, 65, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cardInner:hover {
+  border-color: rgba(0, 255, 65, 0.4);
+  box-shadow: 
+    0 30px 100px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 255, 65, 0.3),
+    0 0 60px rgba(0, 255, 65, 0.15);
+  transform: translateY(-10px);
+}
+
+/* FIXED: Video section with proper 16:9 aspect ratio */
+.cardVideoSection {
+  width: 70%;
+  height: 100%;
+  position: relative;
+  background: #000;
+  border-radius: 20px 0 0 20px;
+  overflow: hidden;
+  /* ADDED: Ensure video container maintains aspect ratio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FIXED: Video sizing for 16:9 aspect ratio */
+.cardVideo {
+  width: 100%;
+  height: 100%;
+  /* CHANGED: object-fit contain to show full video without cropping */
+  object-fit: cover; /* Keep cover but with proper container sizing */
+  transition: transform 0.3s ease;
+  /* ADDED: Ensure video fits properly */
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.cardInner:hover .cardVideo {
+  transform: scale(1.03);
+}
+
+.videoOverlay {
+  position: absolute;
+  bottom: 20px; /* REDUCED: From 30px to 20px */
+  left: 20px; /* REDUCED: From 30px to 20px */
+  right: 20px; /* REDUCED: From 30px to 20px */
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 20px; /* REDUCED: From 20px 25px */
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+.stepNumber {
+  font-size: 0.9rem; /* REDUCED: From 1rem */
+  color: #00ff41;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 6px; /* REDUCED: From 8px */
+  text-transform: uppercase;
+}
+
+.videoTitle {
+  font-size: 1.2rem; /* REDUCED: From 1.4rem */
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Content section - 30% */
+.cardContentSection {
+  width: 30%;
+  height: 100%;
+  padding: 40px 30px; /* REDUCED: From 60px 40px */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  position: relative;
+  border-radius: 0 20px 20px 0;
+}
+
+.cardContentSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 65, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px);
+  background-size: 25px 25px;
+  opacity: 0.6;
+  pointer-events: none;
+  border-radius: 0 20px 20px 0;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+}
+
+.cardHeadline {
+  font-size: 2rem; /* REDUCED: From 2.5rem */
+  font-weight: 700;
+  font-family: 'Lexend', sans-serif;
+  color: #00ff41;
+  margin-bottom: 20px; /* REDUCED: From 25px */
+  line-height: 1.2;
+  text-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+}
+
+.cardDescription {
+  font-size: 1rem; /* REDUCED: From 1.1rem */
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6; /* REDUCED: From 1.7 */
+  margin-bottom: 25px; /* REDUCED: From 35px */
+}
+
+.cardButton {
+  padding: 12px 24px; /* REDUCED: From 15px 30px */
+  background: transparent;
+  border: 2px solid #00ff41;
+  color: #00ff41;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem; /* REDUCED: From 1rem */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+.cardButton:hover {
+  background: #00ff41;
+  color: #000;
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Progress indicator - positioned to avoid navbar */
+.progressIndicator {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 100; /* REDUCED: From 1000 to avoid navbar conflict */
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 25px;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.progressDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.progressDot.active {
+  background: #00ff41;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+  transform: scale(1.2);
+}
+
+/* ENHANCED: Responsive Design with proper scaling */
+@media (max-width: 1024px) {
+  .flowHeader {
+    top: calc(80px + 8vh); /* Adjusted for tablet navbar */
+  }
+  
+  .flowSubtitle {
+    padding-bottom: 8vh;
+  }
+  
+  .stickyContainer {
+    margin-top: calc(80px + 16vh + 120px);
+  }
+  
+  .cardInner {
+    height: 450px;
+    width: 90%;
+  }
+  
+  .cardHeadline {
+    font-size: 1.8rem;
+  }
+  
+  .cardContentSection {
+    padding: 35px 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .flowHeader {
+    top: calc(75px + 6vh); /* Adjusted for mobile navbar */
+  }
+  
+  .flowTitle {
+    font-size: 2.2rem;
+  }
+  
+  .flowSubtitle {
+    padding-bottom: 6vh;
+  }
+  
+  .stickyContainer {
+    margin-top: calc(75px + 12vh + 100px);
+  }
+  
+  .cardInner {
+    flex-direction: column;
+    height: 70vh; /* REDUCED: From 80vh */
+    width: 95%;
+    margin: 0 20px;
+  }
+  
+  .cardVideoSection {
+    width: 100%;
+    height: 55%; /* ADJUSTED: For better proportions */
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .cardContentSection {
+    width: 100%;
+    height: 45%; /* ADJUSTED: For better proportions */
+    padding: 20px 25px;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .cardHeadline {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .cardDescription {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+  
+  .videoOverlay {
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    padding: 12px 16px;
+  }
+  
+  .videoTitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .flowHeader {
+    top: calc(65px + 5vh);
+  }
+  
+  .flowTitle {
+    font-size: 1.8rem;
+  }
+  
+  .flowSubtitle {
+    padding-bottom: 5vh;
+  }
+  
+  .stickyContainer {
+    margin-top: calc(65px + 10vh + 80px);
+  }
+  
+  .cardInner {
+    height: 65vh;
+    width: 98%;
+    margin: 0 15px;
+  }
+  
+  .cardContentSection {
+    padding: 18px 20px;
+  }
+  
+  .cardHeadline {
+    font-size: 1.3rem;
+  }
+  
+  .cardDescription {
+    font-size: 0.9rem;
+  }
+}
+
+/* ENHANCED: Small mobile screens (425px and below) - Better UX! */
+@media (max-width: 425px) {
+  /* CONCEPT: Optimize for modern smartphones with more breathing room */
+  
+  .flowContainer {
+    /* EXPLAINED: Maintain full experience but optimized */
+    height: 100vh;
+  }
+  
+  .flowHeader {
+    /* BALANCED: Better spacing for 425px screens */
+    top: calc(65px + 3vh);
+    padding: 0 15px; /* More comfortable side padding */
+  }
+  
+  .flowTitle {
+    /* READABLE: Larger text that still fits well */
+    font-size: 1.6rem; /* Better balance for 425px */
+    margin-bottom: 12px; /* Reasonable spacing */
+    line-height: 1.2; /* Good readability */
+  }
+  
+  .flowSubtitle {
+    /* OPTIMIZED: Comfortable reading size */
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding-bottom: 4vh; /* Adequate spacing */
+  }
+  
+  .stickyContainer {
+    /* ADJUSTED: Account for larger header */
+    margin-top: calc(65px + 7vh + 80px);
+  }
+  
+  /* MOBILE OPTIMIZATION: Cards for small smartphones */
+  .flowCard {
+    /* EXPLAINED: Balanced padding for content visibility */
+    padding: 0 12px; /* Reasonable side padding */
+  }
+  
+  .cardInner {
+    /* OPTIMIZED: Nearly full width with small margins */
+    width: 98%; /* Small margin for visual breathing */
+    height: 60vh; /* Good height for content */
+    margin: 0 6px; /* Small visual margins */
+    border-radius: 15px; /* Comfortable border radius */
+    /* MOBILE: Simplified hover for touch devices */
+    transform: none;
+  }
+  
+  /* TOUCH-OPTIMIZED: Simplified hover states */
+  .cardInner:hover {
+    transform: translateY(-5px); /* Subtle hover effect */
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(0, 255, 65, 0.2);
+  }
+  
+  /* VIDEO SECTION: Optimize for mobile viewing */
+  .cardVideoSection {
+    width: 100%;
+    height: 58%; /* Good space for video content */
+    border-radius: 15px 15px 0 0;
+  }
+  
+  .videoOverlay {
+    /* COMFORTABLE: Better spacing for touch interaction */
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 10px 15px; /* Comfortable padding */
+    border-radius: 10px;
+  }
+  
+  .stepNumber {
+    font-size: 0.75rem; /* Readable step number */
+    margin-bottom: 5px;
+    letter-spacing: 1.5px; /* Good letter spacing */
+  }
+  
+  .videoTitle {
+    font-size: 0.95rem; /* Clear and readable */
+  }
+  
+  /* CONTENT SECTION: Balanced text layout */
+  .cardContentSection {
+    width: 100%;
+    height: 42%; /* Adequate space for content */
+    padding: 15px 18px; /* Comfortable padding */
+    border-radius: 0 0 15px 15px;
+  }
+  
+  /* KEEP: Pattern overlay but make it subtle */
+  .cardContentSection::before {
+    opacity: 0.3; /* More subtle pattern */
+  }
+  
+  .cardHeadline {
+    font-size: 1.25rem; /* Good readability for 425px */
+    margin-bottom: 10px; /* Balanced spacing */
+    line-height: 1.2;
+  }
+  
+  .cardDescription {
+    font-size: 0.85rem; /* Comfortable reading size */
+    line-height: 1.4; /* Good line spacing */
+    margin-bottom: 15px; /* Adequate bottom margin */
+  }
+  
+  .cardButton {
+    /* TOUCH-TARGET: Comfortable touch interaction */
+    padding: 12px 20px; /* Good touch target */
+    font-size: 0.8rem; /* Readable button text */
+    letter-spacing: 0.8px; /* Good letter spacing */
+    border-radius: 8px; /* Comfortable radius */
+    /* IMPORTANT: Proper touch target size */
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* PROGRESS INDICATOR: Comfortable mobile size */
+  .progressIndicator {
+    bottom: 25px; /* Good bottom spacing */
+    padding: 12px 18px; /* Comfortable padding */
+    gap: 10px; /* Good dot spacing */
+    border-radius: 20px; /* Nice rounded corners */
+  }
+  
+  .progressDot {
+    width: 10px; /* Good size for mobile */
+    height: 10px;
+  }
+  
+  .progressDot.active {
+    transform: scale(1.4); /* Good visual feedback */
+  }
+}
+
+/* FALLBACK: Ultra-small screens (320px and below) - Emergency support */
+@media (max-width: 320px) {
+  /* CONCEPT: Minimal viable experience for very old devices */
+  
+  .flowTitle {
+    font-size: 1.4rem; /* Smaller for tiny screens */
+  }
+  
+  .flowSubtitle {
+    font-size: 0.8rem;
+    padding-bottom: 3vh;
+  }
+  
+  .cardInner {
+    height: 55vh; /* More compact */
+  }
+  
+  .cardHeadline {
+    font-size: 1.1rem;
+  }
+  
+  .cardDescription {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  .cardButton {
+    padding: 10px 16px;
+    font-size: 0.75rem;
+    min-height: 36px;
+  }
+  
+  .progressDot {
+    width: 8px;
+    height: 8px;
+  }
+}
