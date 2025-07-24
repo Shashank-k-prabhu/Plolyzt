@@ -76,6 +76,7 @@
   }
 }
 
+
 @keyframes drawECGMobile {
   0% {
     stroke-dashoffset: 1000;

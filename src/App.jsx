@@ -46,7 +46,7 @@ function App() {
           content: "#smooth-content",
           smooth: 1.5,
           effects: true,
-          smoothTouch: 1,
+          smoothTouch: 0.5,
           normalizeScroll: true,
         });
         setSmoother(smootherInstance);

@@ -81,7 +81,7 @@ const Flow = () => {
         start: "top top",
         // EXPLAINED: Scroll distance for smooth horizontal animation
         // 3x viewport height gives comfortable scroll speed
-        end: `+=${window.innerHeight * 3}`,
+        end: `+=${window.innerHeight}`,
         scrub: 1, // Smooth scrubbing
         animation: horizontalTween,
         invalidateOnRefresh: true,

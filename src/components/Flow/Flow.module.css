@@ -5,7 +5,7 @@
   position: relative;
   width: 100%;
   /* EXPLAINED: Total height = viewport + extra scroll space for horizontal animation */
-  height: calc(100vh ); /* 100vh visible + 250vh for scroll trigger */
+  height: 100vh;
   background: #000;
   overflow: hidden;
 }
