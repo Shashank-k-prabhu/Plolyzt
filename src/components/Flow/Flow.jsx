@@ -3,14 +3,16 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import styles from "./Flow.module.css";
-import marking from "../../assets/videos/Event_marking.mp4";
-import uploadSync from "../../assets/videos/Upload.mp4";
-import exportData from "../../assets/videos/export.mp4";
-import review from "../../assets/videos/Review.mp4";
+
+import download from "../../assets/videos/download.mp4";
+import review_2 from "../../assets/videos/review_2.mp4";
+import mark_2 from "../../assets/videos/Mark_2.mp4";
+import upload_2 from "../../assets/videos/upload_2.mp4";
+import { useInView } from "react-intersection-observer";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-const Flow = () => {
+const Flow = ({ setActiveLink }) => {
   const containerRef = useRef();
   const trackRef = useRef();
   const [activeCard, setActiveCard] = useState(0);
@@ -18,7 +20,7 @@ const Flow = () => {
   const steps = [
     {
       id: "upload-sync",
-      video: uploadSync,
+      video: upload_2,
       headline: "Upload & Sync",
       description:
         "Seamlessly upload your data and sync across all your devices in real-time. Get started in seconds with our intuitive interface.",
@@ -26,7 +28,7 @@ const Flow = () => {
     },
     {
       id: "mark",
-      video: marking,
+      video: mark_2,
       headline: "Mark & Annotate",
       description:
         "Highlight important insights and add annotations to collaborate effectively with your team members.",
@@ -34,7 +36,7 @@ const Flow = () => {
     },
     {
       id: "review",
-      video: review,
+      video: review_2,
       headline: "Review & Collaborate",
       description:
         "Share your work with team members and gather feedback in one place. Real-time collaboration made simple.",
@@ -42,13 +44,24 @@ const Flow = () => {
     },
     {
       id: "export",
-      video: exportData,
+      video: download,
       headline: "Export & Share",
       description:
         "Export your visualizations in multiple formats and share with stakeholders. Perfect for presentations.",
       step: "Step 04",
     },
   ];
+  const { ref, inView } = useInView({
+    threshold: 0.3, // Trigger when 30% visible
+    triggerOnce: false, // Change to true if you want to trigger only once
+  });
+
+  useEffect(() => {
+    if (inView) {
+      console.log("Flow section is in view");
+      setActiveLink("Flow"); // Call your navbar function here
+    }
+  }, [inView, setActiveLink]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -149,67 +162,71 @@ const Flow = () => {
   }, []); // Empty dependency array prevents re-initialization
 
   return (
-    <div className={styles.flowContainer} ref={containerRef}>
-      {/* FIXED: Header with proper spacing */}
-      <div className={styles.flowHeader}>
-        <h2 className={styles.flowTitle}>How It Works</h2>
-        <p className={styles.flowSubtitle}>
-          Powerful tools designed for modern data analysis and visualization.
-          Follow these simple steps to transform your data journey.
-        </p>
-      </div>
+    <div ref={ref}>
+      <div className={styles.flowContainer} ref={containerRef}>
+        {/* FIXED: Header with proper spacing */}
+        <div className={styles.flowHeader}>
+          <h2 className={styles.flowTitle}>How It Works</h2>
+          <p className={styles.flowSubtitle}>
+            Powerful tools designed for modern data analysis and visualization.
+            Follow these simple steps to transform your data journey.
+          </p>
+        </div>
 
-      {/* FIXED: Sticky Container positioned below header */}
-      <div className={styles.stickyContainer}>
-        <div className={styles.horizontalTrack} ref={trackRef}>
-          {steps.map((step, index) => (
-            <div key={step.id} className={styles.flowCard}>
-              <div className={styles.cardInner}>
-                {/* FIXED: Video Section with proper aspect ratio handling */}
-                <div className={styles.cardVideoSection}>
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className={styles.cardVideo}
-                    // ADDED: Ensure video loads properly
-                    preload="metadata"
-                  >
-                    <source src={step.video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+        {/* FIXED: Sticky Container positioned below header */}
+        <div className={styles.stickyContainer}>
+          <div className={styles.horizontalTrack} ref={trackRef}>
+            {steps.map((step, index) => (
+              <div key={step.id} className={styles.flowCard}>
+                <div className={styles.cardInner}>
+                  {/* FIXED: Video Section with proper aspect ratio handling */}
+                  <div className={styles.cardVideoSection}>
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className={styles.cardVideo}
+                      // ADDED: Ensure video loads properly
+                      preload="metadata"
+                    >
+                      <source src={step.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
 
-                  {/* FIXED: Video Overlay with adjusted sizing */}
-                  <div className={styles.videoOverlay}>
-                    <div className={styles.stepNumber}>{step.step}</div>
-                    <h3 className={styles.videoTitle}>{step.headline}</h3>
+                    {/* FIXED: Video Overlay with adjusted sizing */}
+                    <div className={styles.videoOverlay}>
+                      <div className={styles.stepNumber}>{step.step}</div>
+                      <h3 className={styles.videoTitle}>{step.headline}</h3>
+                    </div>
                   </div>
-                </div>
 
-                {/* FIXED: Content Section with adjusted padding */}
-                <div className={styles.cardContentSection}>
-                  <div className={styles.cardContent}>
-                    <h3 className={styles.cardHeadline}>{step.headline}</h3>
-                    <p className={styles.cardDescription}>{step.description}</p>
+                  {/* FIXED: Content Section with adjusted padding */}
+                  <div className={styles.cardContentSection}>
+                    <div className={styles.cardContent}>
+                      <h3 className={styles.cardHeadline}>{step.headline}</h3>
+                      <p className={styles.cardDescription}>
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FIXED: Progress Indicator with proper z-index */}
+        <div className={styles.progressIndicator}>
+          {steps.map((_, index) => (
+            <div
+              key={index}
+              className={`${styles.progressDot} ${
+                activeCard === index ? styles.active : ""
+              }`}
+            />
           ))}
         </div>
-      </div>
-
-      {/* FIXED: Progress Indicator with proper z-index */}
-      <div className={styles.progressIndicator}>
-        {steps.map((_, index) => (
-          <div
-            key={index}
-            className={`${styles.progressDot} ${
-              activeCard === index ? styles.active : ""
-            }`}
-          />
-        ))}
       </div>
     </div>
   );

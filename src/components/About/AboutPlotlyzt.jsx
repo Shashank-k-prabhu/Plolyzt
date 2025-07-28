@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Heart, Activity, TrendingUp, Zap } from "lucide-react";
 import styles from "./AboutPlotlyzt.module.css";
+import { useInView } from "react-intersection-observer";
 
-const AboutPlotlyzt = () => {
+const AboutPlotlyzt = ({ setActiveLink }) => {
   const waveformRef = useRef(null);
   const sectionRef = useRef(null); // NEW: Reference to main section
   const [isVisible, setIsVisible] = useState(false);
@@ -33,6 +34,18 @@ const AboutPlotlyzt = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const { ref, inView } = useInView({
+    threshold: 0.3, // Trigger when 30% visible
+    triggerOnce: false, // Change to true if you want to trigger only once
+  });
+
+  useEffect(() => {
+    if (inView) {
+      console.log("About Us section is in view");
+      setActiveLink("About Us"); // Call your navbar function here
+    }
+  }, [inView, setActiveLink]);
 
   useEffect(() => {
     // FALLBACK: Timer-based loading for mobile devices that may have scroll issues
@@ -112,7 +125,7 @@ const AboutPlotlyzt = () => {
       className={styles.plotlyztAboutSection}
     >
       {/* Background Grid */}
-      <div className={styles.plotlyztBackgroundGrid}>
+      <div className={styles.plotlyztBackgroundGrid} ref={ref}>
         <div className={styles.plotlyztGridPattern} />
       </div>
 
@@ -148,28 +161,29 @@ const AboutPlotlyzt = () => {
               <p
                 className={`${styles.plotlyztStoryParagraph} ${styles.plotlyztLarge}`}
               >
-                In cardiovascular research, every waveform tells a critical
-                story. Traditional analysis tools often fall short when
-                researchers need to understand how medications, interventions,
-                and physiological changes affect cardiac patterns in real-time.
-              </p>
-
-              <p className={styles.plotlyztStoryParagraph}>
                 <strong className={styles.plotlyztStoryHighlight}>
                   Plotlyzt
                 </strong>{" "}
-                was born from this exact challenge—combining the precision of
-                plotting with the depth of analysis. Our platform transforms
-                complex ECG waveforms, heart rate variability, and blood
-                pressure data into actionable insights for medical research and
-                instrument development.
+                was born from the challenge of transforming complex waveform
+                data into actionable insights. Traditional analysis tools often
+                fall short when professionals need to understand how real-time
+                changes affect critical patterns across diverse industries.
               </p>
 
               <p className={styles.plotlyztStoryParagraph}>
-                Whether you're studying arrhythmia patterns, evaluating drug
-                efficacy, or developing next-generation medical devices,
-                Plotlyzt provides the analytical foundation your research
-                demands.
+                Our platform combines the precision of plotting with the depth
+                of analysis, serving multiple domains: Medical professionals
+                reviewing ECG waveforms and patient data, IoT engineers
+                analyzing sensor patterns, scientific researchers studying
+                experimental data, and quality control teams monitoring
+                manufacturing processes. Each waveform tells a critical story
+                that demands sophisticated analytical tools.
+              </p>
+
+              <p className={styles.plotlyztStoryParagraph}>
+                Whether you're detecting anomalies, optimizing processes, or
+                developing next-generation solutions, Plotlyzt provides the
+                analytical foundation your research and operations demand.
               </p>
             </div>
 

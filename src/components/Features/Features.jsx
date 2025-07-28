@@ -3,10 +3,21 @@ import "./Features.css"; // Make sure updated CSS is applied
 import InteractiveChart from "./components/InteractiveCharts";
 import SignalProcessingUpload from "./components/SignalProcessingUpload";
 import VideoToggleEventMarking from "./components/VideoToggleEventMarking";
+import { useInView } from "react-intersection-observer";
 
-const Features = () => {
+const Features = ({ setActiveLink }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const { ref, inView } = useInView({
+    threshold: 0.3, // Trigger when 30% visible
+    triggerOnce: false, // Change to true if you want to trigger only once
+  });
 
+  useEffect(() => {
+    if (inView) {
+      console.log("Features section is in view");
+      setActiveLink("Features"); // Call your navbar function here
+    }
+  }, [inView, setActiveLink]);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -168,7 +179,7 @@ const Features = () => {
   }
 
   return (
-    <section id="features-section" className="features-section">
+    <section id="features-section" className="features-section" ref={ref}>
       {/* Gradient background layers */}
       <div className="gradientBackground">
         <div className="gradientLayer1"></div>

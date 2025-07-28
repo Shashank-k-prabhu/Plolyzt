@@ -35,7 +35,9 @@ function App() {
       handleLoadingComplete();
     }
   };
-
+  useEffect(() => {
+    console.log("Active link changed:", activeLink);
+  }, [activeLink]);
   // ScrollSmoother initialization
   useEffect(() => {
     let smootherInstance;
@@ -46,7 +48,7 @@ function App() {
           content: "#smooth-content",
           smooth: 1.5,
           effects: true,
-          smoothTouch: 0.5,
+          smoothTouch: 0.1,
           normalizeScroll: true,
         });
         setSmoother(smootherInstance);
@@ -91,16 +93,16 @@ function App() {
               }}
             /> */}
             <div id="features">
-              <Features />
+              <Features setActiveLink={setActiveLink} />
             </div>
             <div id="flow">
-              <Flow />
+              <Flow setActiveLink={setActiveLink} />
             </div>
             <div id="about-us">
-              <AboutPlotlyzt />
+              <AboutPlotlyzt setActiveLink={setActiveLink} />
             </div>
             <div id="contact-us">
-              <DemoRequestContact />
+              <DemoRequestContact setActiveLink={setActiveLink} />
             </div>
           </div>
         </div>

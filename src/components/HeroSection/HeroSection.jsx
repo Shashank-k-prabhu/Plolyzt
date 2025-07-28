@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./HeroSection.css";
 import tablet1080 from "../../assets/tablet1080.png";
 import heroplotting from "../../assets/heroplotting.png";
 import tabletmobile from "../../assets/tabletmobile.png";
+import { useInView } from "react-intersection-observer";
 
 const HeroSection = ({
   isVisible,
@@ -21,8 +22,20 @@ const HeroSection = ({
       smoother.scrollTo(`#${targetId}`, true, "top top");
     }
   };
+
+  const { ref, inView } = useInView({
+    threshold: 0.3, // Trigger when 30% visible
+    triggerOnce: false, // Change to true if you want to trigger only once
+  });
+
+  useEffect(() => {
+    if (inView) {
+      console.log("Home section is in view");
+      setActiveLink("Home"); // Call your navbar function here
+    }
+  }, [inView, setActiveLink]);
   return (
-    <div className={`hero-section ${isVisible ? "show" : ""}`}>
+    <div className={`hero-section ${isVisible ? "show" : ""}`} ref={ref}>
       {/* Base Grid Background - Dynamic, stays in JSX */}
       <div
         className="grid-background"
