@@ -180,11 +180,11 @@ const AboutPlotlyzt = ({ setActiveLink }) => {
                 that demands sophisticated analytical tools.
               </p>
 
-              <p className={styles.plotlyztStoryParagraph}>
+              {/* <p className={styles.plotlyztStoryParagraph}>
                 Whether you're detecting anomalies, optimizing processes, or
                 developing next-generation solutions, Plotlyzt provides the
                 analytical foundation your research and operations demand.
-              </p>
+              </p> */}
             </div>
 
             {/* Key Features */}

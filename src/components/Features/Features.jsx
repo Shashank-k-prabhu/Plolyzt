@@ -74,6 +74,76 @@ const Features = ({ setActiveLink }) => {
     },
   ];
 
+  const downloadJson = async () => {
+    const s3Url = import.meta.env.VITE_S3_LINK; // Ensure this is set in your .env file
+
+    try {
+      // setLoading(true);
+      // setMessage("Downloading from S3...");
+
+      // Fetch directly from S3
+      const response = await fetch(s3Url);
+
+      if (!response.ok) {
+        throw new Error(`S3 request failed: ${response.status}`);
+      }
+
+      // Get as blob (more memory efficient for large files)
+      const blob = await response.blob();
+
+      // Trigger download
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "chart_data.json"; // You can customize this name
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      // setMessage("Downloaded successfully!");
+    } catch (error) {
+      console.error("S3 Download failed:", error);
+      // setMessage(`Download failed: ${error.message}`);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+  // Clipboard copy function
+  const copyToClipboard = async (s3Url) => {
+    try {
+      // setLoading(true);
+      // setMessage("Loading data...");
+
+      const response = await fetch(s3Url);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch: ${response.status}`);
+      }
+
+      // For clipboard, we need the text content
+      const text = await response.text();
+
+      // Copy to clipboard
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        console.log("Copied to clipboard!");
+        // setMessage("Copied to clipboard!");
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+    } catch (error) {
+      console.error("Copy failed:", error);
+    }
+  };
+
   // Mock components (placeholders for your actual implementations)
   function ReviewProcess() {
     return (
@@ -148,8 +218,12 @@ const Features = ({ setActiveLink }) => {
         <div className="json-header">
           <div className="json-title">Export Ready</div>
           <div className="json-actions">
-            <button className="export-btn">Download</button>
-            <button className="export-btn">Copy</button>
+            <button className="export-btn" onClick={() => downloadJson()}>
+              Download
+            </button>
+            {/* <button className="export-btn" onClick={() => copyToClipboard()}>
+              Copy
+            </button> */}
           </div>
         </div>
         <div className="json-content">

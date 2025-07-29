@@ -13,6 +13,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 import Flow from "./components/Flow/Flow";
 import AboutPlotlyzt from "./components/About/AboutPlotlyzt";
+import UseCases from "./components/UseCase/UseCase";
 
 // Register plugins BEFORE using them
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -97,6 +98,9 @@ function App() {
             </div>
             <div id="flow">
               <Flow setActiveLink={setActiveLink} />
+            </div>
+            <div id="use-cases">
+              <UseCases setActiveLink={setActiveLink} />
             </div>
             <div id="about-us">
               <AboutPlotlyzt setActiveLink={setActiveLink} />

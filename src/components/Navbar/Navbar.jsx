@@ -9,7 +9,14 @@ const Navbar = ({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
 }) => {
-  const navLinks = ["Home", "Features", "Flow", "About Us", "Contact Us"];
+  const navLinks = [
+    "Home",
+    "Features",
+    "Flow",
+    "Use Cases",
+    "About Us",
+    "Contact Us",
+  ];
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

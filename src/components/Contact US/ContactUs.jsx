@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import "./ContactUs.css"; // Assuming you have a CSS file for styles
-const DemoRequestContact = () => {
+import React, { useEffect, useState } from "react";
+import "./ContactUs.css"; // Updated premium glassmorphism CSS
+import { useInView } from "react-intersection-observer";
+
+const DemoRequestContact = ({ setActiveLink }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -16,6 +18,18 @@ const DemoRequestContact = () => {
     }));
   };
 
+  const { ref, inView } = useInView({
+    threshold: 0.3,
+    triggerOnce: false,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      console.log("Contact Us section is in view");
+      setActiveLink("Contact Us");
+    }
+  }, [inView, setActiveLink]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Demo request submitted:", formData);
@@ -23,61 +37,85 @@ const DemoRequestContact = () => {
   };
 
   return (
-    <section className="demo-contact-section">
+    <section className="demo-contact-section" ref={ref}>
       <div className="demo-contact-container">
-        {/* Left Side - Content */}
+        {/* Left Side - Content, Features, and Contact Info */}
         <div className="demo-content">
-          <h2 className="demo-title">Request a Demo</h2>
-          <p className="demo-subtitle">
-            See Plotlyzt in action with personalized demo tailored to your needs
-          </p>
+          {/* Header Section */}
+          <div className="demo-header">
+            <h2 className="demo-title">Let's Connect</h2>
+            <p className="demo-subtitle">
+              Ready to transform your data into stunning visualizations?
+              Schedule a personalized demo and discover how Plotlyzt can
+              revolutionize your analysis workflow.
+            </p>
+          </div>
 
+          {/* Premium Features */}
           <div className="demo-features">
             <div className="feature-item">
-              <span className="feature-icon">⚡</span>
-              <span className="feature-text">Quick 15-minute demo</span>
+              <div className="feature-icon">⚡</div>
+              <div className="feature-text">
+                Quick 15-minute personalized demo session tailored to your
+                industry and use case
+              </div>
             </div>
+
             <div className="feature-item">
-              <span className="feature-icon">🎯</span>
-              <span className="feature-text">Customized for your use case</span>
+              <div className="feature-icon">🎯</div>
+              <div className="feature-text">
+                Live examples with real data patterns and interactive
+                visualization walkthroughs
+              </div>
             </div>
+
             <div className="feature-item">
-              <span className="feature-icon">📊</span>
-              <span className="feature-text">
-                Live data visualization examples
-              </span>
+              <div className="feature-icon">📊</div>
+              <div className="feature-text">
+                Expert guidance on advanced features, integrations, and best
+                practices for your team
+              </div>
             </div>
           </div>
 
+          {/* Contact Info */}
           <div className="contact-info">
-            <p className="contact-email">hello@plotlyzt.com</p>
-            <p className="contact-note">Questions? Drop us a line anytime</p>
+            <a href="mailto:hello@plotlyzt.com" className="contact-email">
+              hello@plotlyzt.com
+            </a>
+            <p className="contact-note">
+              Questions? We're here to help you succeed
+            </p>
           </div>
         </div>
 
-        {/* Right Side - Form */}
+        {/* Right Side - Premium Form Container */}
         <div className="demo-form-container">
-          <div className="demo-form">
+          <form className="demo-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="fullName">Full name*</label>
+                <label htmlFor="fullName">Full Name</label>
                 <input
                   type="text"
                   id="fullName"
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
+                  placeholder="John Doe"
+                  required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email*</label>
+                <label htmlFor="email">Work Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
+                  placeholder="john@company.com"
+                  required
                 />
               </div>
             </div>
@@ -90,29 +128,26 @@ const DemoRequestContact = () => {
                 name="company"
                 value={formData.company}
                 onChange={handleInputChange}
+                placeholder="Your company name"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">Tell us about your project*</label>
+              <label htmlFor="message">Tell us about your project</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                rows="4"
-                placeholder="What kind of data do you work with? What are your visualization needs?"
+                placeholder="What type of data do you work with? What visualization challenges are you looking to solve? Tell us about your current workflow and goals."
+                required
               />
             </div>
 
-            <button
-              type="button"
-              className="demo-submit-btn"
-              onClick={handleSubmit}
-            >
-              Request Demo
+            <button type="submit" className="demo-submit-btn">
+              Schedule Demo
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>
